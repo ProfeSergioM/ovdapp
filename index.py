@@ -3,7 +3,8 @@ from dash import dcc,html
 
 from app import app
 from apps import (ovdapp,electriceye,fastrsam,locali6,autovdas,hangar18,ovdash,
-                  orcapp,sismodb,helicorderizador,nllvsh71,defcon,transparentar)
+                  orcapp,sismodb,helicorderizador,nllvsh71,defcon,transparentar,
+                  formularioreav)
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -41,6 +42,8 @@ def display_page(pathname):
         return defcon.layout
     elif pathname == '/apps/transparentar':
         return transparentar.layout
+    elif pathname == '/apps/formularioreav':
+        return formularioreav.layout
     elif pathname == '/':
         return ovdapp.layout
     else:
@@ -75,6 +78,8 @@ app.clientside_callback(
             document.title = 'Ovdapp - DEFCON'
         } else if (tab_value === '/apps/transparentar') {
             document.title = 'Ovdapp - TRANSPARENTAR'
+        } else if (tab_value === '/apps/formularioreav') {
+            document.title = 'Ovdapp - Formulario REAV'
         }
     }
     

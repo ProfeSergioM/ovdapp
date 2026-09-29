@@ -1,0 +1,99 @@
+/* Formulario REAV (apps/formularioreav.py). Todas las reglas van bajo .freav-raiz
+   para no afectar las demas apps de ovdapp. */
+
+.freav-raiz { min-height: 100vh; background: #2b2f33; }
+
+/* ---------- barra superior ---------- */
+.freav-raiz .freav-barra {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px;
+  padding: 10px 20px; background: #1b1d20; border-bottom: 1px solid #3a3f44;
+}
+.freav-raiz .freav-barra-titulo { font-size: 1.1rem; font-weight: 600; color: #fff; margin-right: 16px; }
+.freav-raiz .freav-leyenda { font-size: .8rem; color: #b8bec4; }
+.freav-raiz .freav-muestra { display: inline-block; width: 14px; height: 10px; margin: 0 4px 0 6px; vertical-align: middle; }
+.freav-raiz .freav-muestra-campo { background: #e3eefa; border-bottom: 2px solid #0f69b4; }
+.freav-raiz .freav-muestra-auto { background: #e4f4e6; border-bottom: 2px dotted #2e8b3a; }
+.freav-raiz .freav-barra-acciones { display: flex; align-items: center; gap: 8px; }
+.freav-raiz .freav-barra-etq { font-size: .8rem; color: #b8bec4; }
+.freav-raiz .freav-mensaje { flex-basis: 100%; }
+.freav-raiz .freav-mensaje:empty { display: none; }
+.freav-raiz .freav-alerta-msg { margin: 0; padding: 6px 12px; font-size: .9rem; }
+
+/* ---------- hoja tamano carta ---------- */
+.freav-raiz .freav-escritorio { padding: 28px 16px 60px; overflow-x: auto; }
+.freav-raiz .freav-hoja {
+  position: relative; box-sizing: border-box;
+  width: 816px; min-height: 1056px; margin: 0 auto;
+  padding: 150px 60px 90px 76px;               /* margenes del REAV: 2,5 / 1,6 / 2,5 / 2 cm */
+  background: #fff; color: #222; box-shadow: 0 4px 24px rgba(0, 0, 0, .45);
+  font-family: gobCL, "Segoe UI", Calibri, Arial, sans-serif; font-size: 11pt; line-height: 1.45;
+}
+.freav-raiz .freav-hoja p { margin: 0 0 10px; text-align: justify; }
+.freav-raiz .freav-hoja p.freav-izq { text-align: left; }
+.freav-raiz .freav-logo { position: absolute; top: 0; left: 0; width: 100%; }
+.freav-raiz .freav-titulo { text-align: center; font-weight: 700; font-size: 14pt; }
+.freav-raiz .freav-subtitulo { text-align: center; font-size: 13pt; margin-top: 4px; }
+.freav-raiz .freav-fecha { text-align: center; margin: 4px 0 18px; }
+.freav-raiz .freav-bloque { margin: 6px 0 14px; }
+.freav-raiz .freav-fila { display: flex; align-items: center; min-height: 28px; }
+.freav-raiz .freav-etiqueta { flex: 0 0 7.5cm; }
+.freav-raiz .freav-valor { flex: 1; }
+.freav-raiz .freav-obs-titulo { margin-top: 16px !important; }
+.freav-raiz .freav-firma { text-align: right !important; margin-top: 16px !important; }
+.freav-raiz .freav-pie {
+  position: absolute; left: 60px; right: 60px; bottom: 30px;
+  font-size: 7.5pt; color: #555; border-bottom: 5px solid; border-image: linear-gradient(90deg, #0f69b4 30%, #e22c2c 30%) 1;
+  padding-bottom: 4px;
+}
+
+/* ---------- campos editables dentro del texto ---------- */
+.freav-raiz .freav-hoja .freav-campo.form-control,
+.freav-raiz .freav-hoja .freav-campo.form-select {
+  display: inline-block; vertical-align: baseline;
+  height: auto; padding: 0 4px; margin: 1px 0;
+  font: inherit; color: #0b3d6e;
+  background-color: #e3eefa; border: 0; border-bottom: 2px solid #0f69b4; border-radius: 2px;
+  box-shadow: none;
+}
+.freav-raiz .freav-hoja .freav-campo.form-select { padding-right: 26px; background-position: right 4px center; }
+.freav-raiz .freav-hoja .freav-campo.freav-centro { text-align: center; }
+.freav-raiz .freav-hoja .freav-campo:focus { background-color: #d2e4f8; outline: 2px solid #9cc3ec; }
+.freav-raiz .freav-hoja .freav-campo::placeholder { color: #7c96b0; font-style: italic; }
+.freav-raiz .freav-hoja .freav-campo.is-invalid { background-color: #fde3e3; border-bottom-color: #d32f2f; }
+.freav-raiz .freav-hoja .freav-area.form-control { display: block; width: 100%; padding: 6px 8px; margin-bottom: 14px; resize: vertical; }
+
+/* ---------- textos calculados ---------- */
+.freav-raiz .freav-auto { background: #e4f4e6; border-bottom: 2px dotted #2e8b3a; padding: 0 3px; border-radius: 2px; }
+
+/* ---------- controles que no forman parte del documento ---------- */
+.freav-raiz .freav-mini {
+  margin-left: 8px; padding: 0 8px; font-size: 8pt; line-height: 18px; vertical-align: middle;
+  color: #0f69b4; background: #fff; border: 1px solid #9cc3ec; border-radius: 9px; cursor: pointer;
+}
+.freav-raiz .freav-interruptor { margin: 18px 0 8px; font-size: 9.5pt; color: #0f69b4; }
+.freav-raiz .freav-interruptor .form-check-input { cursor: pointer; }
+
+/* ---------- zonas de imagen ---------- */
+.freav-raiz .freav-upload {
+  margin: 8px auto 12px; width: 85%; min-height: 80px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px dashed #9cc3ec; border-radius: 4px; background: #f4f8fd;
+}
+.freav-raiz .freav-upload-texto { font-size: 9.5pt; color: #5b7a99; padding: 10px; text-align: center; }
+.freav-raiz .freav-img { max-width: 100%; display: block; }
+
+/* ---------- alerta tecnica (clic en el color) ---------- */
+.freav-raiz .freav-alerta { width: 290px; margin: 6px auto 16px; user-select: none; }
+.freav-raiz .freav-alerta-titulo { font-size: 20pt; color: #646464; line-height: 1.1; white-space: nowrap; }
+.freav-raiz .freav-alerta-franja { height: 3px; margin: 2px 0 4px; background: linear-gradient(90deg, #0f69b4 37%, #e22c2c 37%); }
+.freav-raiz .freav-alerta-flechas { display: flex; height: 12px; }
+.freav-raiz .freav-flecha { flex: 1; }
+.freav-raiz .freav-flecha.activa::after {
+  content: ""; display: block; margin: 0 auto; width: 0; height: 0;
+  border-left: 24px solid transparent; border-right: 24px solid transparent; border-top: 11px solid #646464;
+}
+.freav-raiz .freav-alerta-cajas { display: flex; height: 26px; border: 1px solid #646464; }
+.freav-raiz .freav-caja { flex: 1; cursor: pointer; border-right: 1px solid #646464; }
+.freav-raiz .freav-caja:last-child { border-right: 0; }
+.freav-raiz .freav-caja:hover { outline: 3px solid #0f69b4; outline-offset: -3px; }

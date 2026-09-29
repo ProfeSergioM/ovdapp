@@ -1,0 +1,30 @@
+FORMULARIO REAV PARA OVDAPP
+===========================
+
+Archivos nuevos (copiar respetando las carpetas):
+  apps/formularioreav.py              pagina Dash con el formulario en forma de hoja
+  assets/formularioreav.css           estilos (todos bajo .freav-raiz, no afectan otras apps)
+  assets/plantillas/REAV_plantilla.docx   plantilla Word con campos {{ ... }}
+  assets/plantillas/alerta_*.png      imagenes de alerta tecnica (reemplazables por las oficiales)
+  assets/plantillas/logo_encabezado.png
+  scripts_aux/crear_plantilla_reav.py regenera la plantilla desde un REAV de Electric Eye
+  probar_formulario.py                prueba aislada, sin cargar las otras apps
+
+1) Instalar la dependencia en el entorno ovdapp2023:
+     pip install docxtpl
+   (puede actualizar python-docx; conviene probar Electric Eye despues)
+
+2) Probar aislado:
+     python probar_formulario.py    ->  http://localhost:8090
+
+3) Integrar en index.py (tres cambios):
+   a) en el import de apps agregar:  formularioreav
+   b) en display_page, antes de  elif pathname == '/':
+          elif pathname == '/apps/formularioreav':
+              return formularioreav.layout
+   c) en el clientside_callback del titulo:
+          } else if (tab_value === '/apps/formularioreav') {
+              document.title = 'Ovdapp - Formulario REAV'
+
+Editar la plantilla: abrir REAV_plantilla.docx en Word y cambiar texto o formato
+libremente, manteniendo los nombres entre {{ }} y las lineas {%p ... %}.
